@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """
     use naive_gan to generate more data.
+    use example: python gan_traffic_generation_20181024/main_gan_svm_20181113.py
+
 """
 import argparse
 import os
@@ -367,12 +369,12 @@ def main(normal_f='', attack_f='', gan_type= 'dcgan', epochs=10, label_dict={'no
 
 def parse_params():
     parser = argparse.ArgumentParser(prog='GAN')
-    parser.add_argument('-i', '--input_files_dict', type=str, dest='input_files_dict',
-                        help='{\'normal_files\': [normal_file,...], \'attack_files\': [attack_file_1, attack_file_2,...]}',
-                        default='../Data/normal_demo.txt', required=True)  # '-i' short name, '--input_dir' full name
-    parser.add_argument('-e', '--epochs', dest='epochs', help="epochs", default='100')
-    parser.add_argument('-o', '--output_dir', dest='out_dir', help="the output information of this scripts",
-                        default='../log')
+    # parser.add_argument('-i', '--input_files_dict', type=str, dest='input_files_dict',
+    #                     help='{\'normal_files\': [normal_file,...], \'attack_files\': [attack_file_1, attack_file_2,...]}',
+    #                     default='../Data/normal_demo.txt', required=True)  # '-i' short name, '--input_dir' full name
+    # parser.add_argument('-e', '--epochs', dest='epochs', help="epochs", default='100')
+    # parser.add_argument('-o', '--output_dir', dest='out_dir', help="the output information of this scripts",
+    #                     default='../log')
     args = vars(parser.parse_args())
 
     return args
@@ -396,11 +398,13 @@ if __name__ == '__main__':
         print('Warning: please backup these results files firstly when you restart this application.')
         exit()  # just show the results, if you want restart, please save these result files as backup firstly. if not, these files will be overwrite.
 
-    # input_files_dict={'normal_files': 'data/normal_demo.txt', 'attack_files': 'data/attack_demo.txt'}
+    input_files_dict={'normal_files': 'data/attack_normal_data/benign_data.csv', 'attack_files': 'data/attack_normal_data/attack_data.csv'}
     args = parse_params()
-    input_files_dict = eval(args['input_files_dict'])
-    epochs = args['epochs']
-    out_dir = args['out_dir']
+    # input_files_dict = eval(args['input_files_dict'])
+    # epochs = args['epochs']
+    # out_dir = args['out_dir']
+    epochs = 100
+    out_dir= "log"
     print('args:%s\n' % args)
     # ocsvm_main(input_files_dict, kernel=kernel, out_dir='../log')
     noraml_f = input_files_dict['normal_files']

@@ -125,7 +125,8 @@ def t_sne_show(X, y):
     #
 
 
-def achieve_train_test_set(normal_f, attack_f, label_dict={'normal': '0', 'attack': '1'}, select_train_size=0.3,
+def achieve_train_test_set(
+normal_f, attack_f, label_dict={'normal': '0', 'attack': '1'}, select_train_size=0.3,
                            output_dir='./log', start_feat_idx=['-', '-']):
     # step 1. mix normal (label = 0)and attack (label=1) data, then normalize the mixed data [0,1]
     (X, y), output_f = mix_normal_attack_and_label(normal_f, attack_f, label_dict=label_dict,
@@ -163,6 +164,6 @@ def achieve_train_test_set(normal_f, attack_f, label_dict={'normal': '0', 'attac
 
 
 if __name__ == '__main__':
-    normal_f = ''
-    attack_f = ''
+    normal_f = 'data\\attack_normal_data\\benign_data.csv'
+    attack_f = 'data\\attack_normal_data\\attack_data.csv'
     achieve_train_test_set()
